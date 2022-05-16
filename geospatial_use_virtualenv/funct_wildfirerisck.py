@@ -18,8 +18,9 @@
 # from rasterio.windows import Window
 # from rasterio.plot import reshape_as_raster
 # from rasterio.plot import reshape_as_image
+from lithops.storage import Storage
 # import matplotlib.pyplot as plt
-# import geopandas as gpd
+#import geopandas as gpd
 # import pandas as pd
 import numpy as np
 import lithops
@@ -57,10 +58,11 @@ LOCAL_INPUT_DIR = './data/'   # Default
 
 
 def storage_data():
-    storage = lithops.Storage()
+    storage = Storage()
     bucket_objects = storage.list_keys(bucket=DATA_BUCKET)
     for file_name in os.listdir(LOCAL_INPUT_DIR):
         key = os.path.join(INPUT_DATA_PREFIX, file_name)    # Added
+
         if key not in bucket_objects:   # Changed: if file_name not in bucket_objects:
             with open(os.path.join(LOCAL_INPUT_DIR, file_name), 'rb') as file:
                 print(f'Uploading {key}...')
@@ -269,3 +271,5 @@ def calculate_models(obj, storage):
 
     out = subprocess.check_output(['find', '/tmp/geo/'])
     return out
+
+

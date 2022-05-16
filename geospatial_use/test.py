@@ -43,35 +43,29 @@ import os
 import json
 # from matplotlib.colors import ListedColormap, BoundaryNorm
 
+
 FCC_WINDOW = 3
 FCC_BREAKPOINT = 0.01
 
 
-#### ARGUMENTS ####
 
 DATA_BUCKET = 'objects-geospatial-wildfirerisk-0'   # Default
-INPUT_DATA_PREFIX = ''   # Default
+INPUT_DATA_PREFIX = 'data-example/'   # Default
 LOCAL_INPUT_DIR = './data/'   # Default
 
-#### Upload dataset ####
 
-
-def storage_data():
-    storage = lithops.Storage()
-    bucket_objects = storage.list_keys(bucket=DATA_BUCKET)
-    for file_name in os.listdir(LOCAL_INPUT_DIR):
-        key = os.path.join(INPUT_DATA_PREFIX, file_name)    # Added
-        if key not in bucket_objects:   # Changed: if file_name not in bucket_objects:
-            with open(os.path.join(LOCAL_INPUT_DIR, file_name), 'rb') as file:
-                print(f'Uploading {key}...')
-                data = file.read()
-                storage.put_object(bucket=DATA_BUCKET, key=key, body=data)
-                print('Ok!')
-        else:   # Added
-            print(f'It is already uploaded: {key}...')   # Added
-    return storage
-
-#### Calculte DEM, DSM and CHM
+storage = lithops.Storage()
+bucket_objects = storage.list_keys(bucket=DATA_BUCKET)
+for file_name in os.listdir(LOCAL_INPUT_DIR):
+    key = os.path.join(INPUT_DATA_PREFIX, file_name)    # Added
+    if key not in bucket_objects:   # Changed: if file_name not in bucket_objects:
+        with open(os.path.join(LOCAL_INPUT_DIR, file_name), 'rb') as file:
+            print(f'Uploading {key}...')
+            data = file.read()
+            storage.put_object(bucket=DATA_BUCKET, key=key, body=data)
+            print('Ok!')
+    else:   # Added
+        print(f'It is already uploaded: {key}...')   # Added
 
 
 def calculate_models(obj, storage):
@@ -240,7 +234,7 @@ def calculate_models(obj, storage):
         nveg = np.sum(array == 1)
         total = len(array)
         out = (nveg/total)*100
-        return out
+        return(out)
 
     TCC = ndimage.generic_filter(data, _compute_fraction, size=FCC_WINDOW)
 
@@ -269,3 +263,13 @@ def calculate_models(obj, storage):
 
     out = subprocess.check_output(['find', '/tmp/geo/'])
     return out
+
+
+fexec = lithops.FunctionExecutor()
+fexec.map(calculate_models, f'cos://{DATA_BUCKET}/{INPUT_DATA_PREFIX}')
+res = fexec.get_result()
+for r in res:
+    print(r.decode('utf-8').strip())
+    print('---')
+
+
