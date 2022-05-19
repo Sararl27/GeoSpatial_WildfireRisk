@@ -3,6 +3,7 @@ conda update -n base conda && conda install -c conda-forge pdal python-pdal gdal
 
 pip install --upgrade pip setuptools six wheel && pip install --no-cache-dir \
   lithops \
+  jupyter \
   :: Lithops modules
   flask \
   pika \
