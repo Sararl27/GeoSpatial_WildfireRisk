@@ -1,9 +1,11 @@
 :: Para ejecutar -> call /path/to/script/installpackages.bat
-conda update -n base conda && conda install -c conda-forge pdal python-pdal gdal && conda clean --all
 
-pip install --upgrade pip setuptools six wheel && pip install --no-cache-dir \
+conda install jupyter
+
+conda update -n base conda && conda install -c conda-forge pdal python-pdal gdal && conda clean --all 
+:: primero descargarlo, hay video sobre como instalarlo GDAL-3.4.3-cp39-win_amd64.whl
+pip install --upgrade pip setuptools six wheel && pip install --no-cache-dir
   lithops \
-  jupyter \
   :: Lithops modules
   flask \
   pika \
