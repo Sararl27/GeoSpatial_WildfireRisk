@@ -7,10 +7,10 @@ WildfireRisk computes the models DSM, DEM, CHM, FCC, aspect and slope and genera
 
 2. Configure a [IBM Cloud Functions](https://github.com/lithops-cloud/lithops/blob/master/docs/source/compute_config/ibm_cf.md). In addition to the basic configuration, it will be necessary to configure the `runtime_memory` to 2048 MB. 
 
-  ```yaml
-      ibm_cf:
-          runtime_memory: 2048
-   ```
+    ```yaml
+        ibm_cf:
+            runtime_memory: 2048
+     ```
    
 3. Lithops has default runtimes, but none has all the required packages, so you have to create your runtime. In the directory [runtime](https://github.com/Sararl27/GeoSpatial_WildfireRisk/tree/main/runtime), there is the runtime you will need. To configure it, follow the steps in the *Custom runtime* section in [Lithops runtime for IBM Cloud Functions](https://github.com/lithops-cloud/lithops/blob/master/docs/source/compute_config/ibm_cf.md).
 
