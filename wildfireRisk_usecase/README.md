@@ -15,9 +15,9 @@ WildfireRisk computes the models DSM, DEM, CHM, FCC, aspect and slope and genera
 3. Lithops has default runtimes, but none has all the required packages, so you have to create your runtime. In the directory [runtime](https://github.com/Sararl27/GeoSpatial_WildfireRisk/tree/main/runtime), there is the runtime you will need. To configure it, follow the steps in the *Custom runtime* section in [Lithops runtime for IBM Cloud Functions](https://github.com/lithops-cloud/lithops/blob/master/docs/source/compute_config/ibm_cf.md).
 
 ### WildfireRisk 
-1. Configure your `LOCAL_INPUT_DIR` (diretory where are the data you want upload), `DATA_BUCKET` and  `INPUT_DATA_PREFIX`.
+1. Configure your `LOCAL_INPUT_DIR` (diretory where is the data you want to upload), `DATA_BUCKET` (name of the storage bucket) and `INPUT_DATA_PREFIX` (the path where the data input will be stored in the cloud, uploaded from your local storage).
   ```python
-  LOCAL_INPUT_DIR = <PATH_INPUT_DATA>
-  DATA_BUCKET = <BUCKET_STORAGE>
-  INPUT_DATA_PREFIX = <PATH_INPUT_DATA_BUCKET_STORAGE>
+  LOCAL_INPUT_DIR = '<PATH_INPUT_DATA>'
+  DATA_BUCKET = '<STORAGE_BUCKET>'
+  INPUT_DATA_PREFIX = '<PATH_INPUT_DATA_STORAGE_BUCKET>'
   ```
