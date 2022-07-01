@@ -129,4 +129,3 @@ dmypy.json
 .pyre/
 *.png
 /wildfireRisk_usecase/util_files/
-/wildfireRisk_usecase/no_used_code/
