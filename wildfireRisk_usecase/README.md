@@ -16,8 +16,9 @@ WildfireRisk computes the models DSM, DEM, CHM, FCC, aspect and slope and genera
 
 ### WildfireRisk 
 1. Configure your `LOCAL_INPUT_DIR` (diretory where is the data you want to upload), `DATA_BUCKET` (name of the storage bucket) and `INPUT_DATA_PREFIX` (the path where the data input will be stored in the cloud, uploaded from your local storage).
-  ```python
-  LOCAL_INPUT_DIR = '<PATH_INPUT_DATA>'
-  DATA_BUCKET = '<STORAGE_BUCKET>'
-  INPUT_DATA_PREFIX = '<PATH_INPUT_DATA_STORAGE_BUCKET>'
-  ```
+
+    ```python
+    LOCAL_INPUT_DIR = '<PATH_INPUT_DATA>'                     # Example: 'data_example/'
+    DATA_BUCKET = '<STORAGE_BUCKET>'                          # Example: 'objects-geospatial-wildfirerisk-test'
+    INPUT_DATA_PREFIX = '<PATH_INPUT_DATA_STORAGE_BUCKET>'    # Example: 'data-example/'
+    ```
