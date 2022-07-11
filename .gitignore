@@ -128,4 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 *.png
-/wildfireRisk_usecase/util_files/
+/terrain-models-calculation/util_files/
+/terrain-models-calculation/.idea/
